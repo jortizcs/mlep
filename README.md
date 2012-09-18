@@ -1,4 +1,2 @@
-mlep
-====
-
-MLE+: A Tool for Integrated Design and Deployment of Energy Efficient Building Controls
+# MLE+, an open-source Matlab/Simulink toolbox for building energy research
+and development.
