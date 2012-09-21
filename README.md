@@ -7,8 +7,6 @@ whole-building energy simulator [EnergyPlus](http://apps1.eere.energy.gov/buildi
 and researchers who are familiar with Matlab and Simulink and want to use
 these software tools in building energy simulation.
 
-To get started, check out http://www.seas.upenn.edu/~nghiem/mleplus.html
-
 
 
 
