@@ -22,12 +22,21 @@ The distribution contains a tutorial that walks you through the installation and
 
 
 
-Developers
+Authors
 -----------
 
-MLE+ is being developed at [mLAB](http://mlab.seas.upenn.edu/), part of the the University of Pennsylvania. If you have any questions or comments, 
-please contact Willy Bernal at willyg@seas.upenn.edu
+MLE+ is being developed by a team at [mLAB](http://mlab.seas.upenn.edu/), the Real Time Embedded Lab at the the University of Pennsylvania. 
+If you have any questions or comments, please contact the authors. 
 
+Willy Bernal 
+- willyg@seas.upenn.edu
+
+Truong Nghiem
+- nghiem@seas.upenn.edu
+
+Madhur Behl
+
+Rahul Mangharam
 
 
 
