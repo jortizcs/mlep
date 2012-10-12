@@ -19,6 +19,14 @@ Clone the repo, `git clone git://github.com/mlab/mlep.git`, or [download the lat
 The distribution contains a tutorial that walks you through the installation and gets you started using MLE+. 
 
 
+Publications
+-----------
+
+Further information and description of MLE+ can be found on the paper submitted at the 4th ACM Workshop On Embedded Sensing
+Systems For Energy-Efficiency In Buildings. 
+
+[MLE+: A Tool for Integrated Design and Deployment of Energy Efficient Building Controls](http://repository.upenn.edu/mlab_papers/51)
+
 
 Authors
 -----------
