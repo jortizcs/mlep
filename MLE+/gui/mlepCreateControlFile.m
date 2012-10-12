@@ -2,9 +2,16 @@ function [out] = mlepCreateControlFile(mlep)
 
 fid = fopen([mlep.data.projectPath mlep.data.controlFileName],'wt');
 
-sizeInput = length(mlep.data.inputFieldNames);
-sizeOutput = length(mlep.data.outputFieldNames);
-
+if isfield(mlep.data,'inputFieldNames')
+    sizeInput = length(mlep.data.inputFieldNames);
+else
+    sizeInput = 0;
+end
+if isfield(mlep.data,'outputFieldNames')
+    sizeOutput = length(mlep.data.outputFieldNames);
+else
+    sizeOutput = 0;
+end
 header = ['function [eplus_in_curr,userdata] = controlFile(cmd,eplus_out_prev, eplus_in_prev, time, stepNumber, userdata) \n',...
     '%% ---------------FUNCTION INPUTS---------------\n'];
 

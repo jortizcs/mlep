@@ -36,7 +36,7 @@ indexIdf = strfind(data.data.idfFullPath, '.idf');
 indexEpw = strfind(data.data.weatherFile, '.epw');
 ep.arguments = {data.data.idfFullPath(1:indexIdf(1)-1), data.data.weatherFile(1:indexEpw(1)-1)};
 %ep.arguments = {'/Users/willyg/Documents/MATLAB/MLE+/Example/SmOffPSZ', 'USA_IL_Chicago-OHare.Intl.AP.725300_TMY3'};
-ep.acceptTimeout = 20000;
+ep.acceptTimeout = 6000;
 VERNUMBER = 2;  % version number of communication protocol (2 for E+ 6.0.0)
 
 

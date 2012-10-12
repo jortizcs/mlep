@@ -36,7 +36,7 @@ indexIdf = strfind(mlep.data.idfFile, '.idf');
 indexEpw = strfind(mlep.data.weatherFile, '.epw');
 ep.arguments = {mlep.data.idfFile(1:indexIdf(1)-1), mlep.data.weatherFile(1:indexEpw(1)-1)};
 %ep.arguments = {'/Users/willyg/Documents/MATLAB/MLE+/Example/SmOffPSZ', 'USA_IL_Chicago-OHare.Intl.AP.725300_TMY3'};
-ep.acceptTimeout = 60000;
+ep.acceptTimeout = 800000;
 VERNUMBER = 2;  % version number of communication protocol (2 for E+ 6.0.0)
 
 
@@ -92,12 +92,13 @@ else
     mlep.data.funcHandle = str2func(mlep.data.controlFunctionName);
 end
 
+mlep.data.stepNumber = [];
 mlep.data.inputFieldNames = {};
 for i = 1:size(mlep.data.inputTableData,1)
     mlep.data.inputFieldNames{i} = mlep.data.inputTableData{i,4};
     mlep.data.stepNumber(i) = 1;
 end
-
+ 
 %% USERDATA CHECK
 if ~isfield(mlep.data,'userdata')
     mlep.data.userdata = struct();
@@ -138,7 +139,8 @@ while kStep <= MAXSTEPS
     
     % Obtain Input Values from Control File (SIM vs. SYSID)
     if (mlep.data.sysID == 1)
-        [inputStruct, mlep] = feval(mlep.data.funcHandle,'normal',mlepOut, mlepIn, time(1:kStep), kStep, mlep); % NEED TO CHANGE,eplusOutPrev, eplusInPrev, time, userdata
+        [inputStruct, mlep] = feval(mlep.data.funcHandle,cmd,mlepOut, mlepIn, time(1:kStep), kStep, mlep); % NEED TO CHANGE,eplusOutPrev, eplusInPrev, time, userdata
+        cmd = 'normal';
     else 
         try
         [inputStruct, mlep.data.userdata] = feval(mlep.data.funcHandle, cmd, mlepOut, mlepIn, time(1:kStep), kStep, mlep.data.userdata); %.data.userdata NEED TO CHANGE,eplusOutPrev, eplusInPrev, time, userdata

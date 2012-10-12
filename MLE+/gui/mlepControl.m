@@ -46,19 +46,16 @@ mlep.controlPanel = uiextras.Panel( 'Parent', mlep.controlTab, 'BorderType', 'no
                             set(mlep.controlFeedback1BoxVBox,'Sizes',[-4 -1]);    
                             uicontrol( 'style', 'push', 'Parent', mlep.controlFeedback1Box, 'Callback', {@mlepControlFunction,myhandle,'getInputIndexPID'}, 'FontSize', mlep.fontSmall );
                         set(mlep.controlFeedback1Box,'Sizes',[-1 -4]);
-%                     %% Tab 2
-%                     % PANEL TAB 2    
-%                     mlep.controlFeedbackPanel2 = uiextras.Panel( 'Parent', mlep.controlFeedbackTab, 'BorderType', 'none' );
 
                     %% TAB 4 USER DEFINED
                     % PANEL TAB 4 
                     mlep.controlFeedbackPanel4 = uiextras.Panel( 'Parent', mlep.controlFeedbackTab, 'BorderType', 'none', 'BorderWidth', 1);
                         % HBOX
                         mlep.controlFeedback4Box = uiextras.HBox( 'Parent', mlep.controlFeedbackPanel4, 'Padding', 5, 'Spacing', 20 );
-                            % PANEL CONTROL FILE
-                            mlep.controlControlFilePanel = uiextras.Panel( 'Parent', mlep.controlFeedback4Box, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'Control File', 'FontSize', mlep.fontMedium);
+%                             % PANEL CONTROL FILE
+%                             mlep.controlControlFilePanel = uiextras.Panel( 'Parent', mlep.controlFeedback4Box, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'Control File', 'FontSize', mlep.fontMedium);
                                 % VBOX FOR BUTTONS
-                                mlep.controlFeedbackFile = uiextras.VBox( 'Parent', mlep.controlControlFilePanel, 'Padding', 10, 'Spacing', 10 );
+                                mlep.controlFeedbackFile = uiextras.VBox( 'Parent', mlep.controlFeedback4Box, 'Padding', 10, 'Spacing', 10 );
                                     uicontrol( 'style', 'text', 'Parent', mlep.controlFeedbackFile, 'String', {'Select Control File'}, 'FontSize', mlep.fontMedium );
                                     mlep.controlFeedbackFileTop = uiextras.HButtonBox( 'Parent', mlep.controlFeedbackFile, 'ButtonSize', [200 60] );
                                         mlep.controlFeedbackFileCreate = uicontrol( 'style', 'push', 'Parent', mlep.controlFeedbackFileTop, 'String', 'Create Control File', 'Callback', {@mlepControlFunction,myhandle,'createControlFile'}, 'FontSize', mlep.fontSmall);
@@ -68,10 +65,10 @@ mlep.controlPanel = uiextras.Panel( 'Parent', mlep.controlTab, 'BorderType', 'no
                                         mlep.controlFeedbackLoadEdit = uicontrol( 'style', 'edit', 'Parent', mlep.controlFeedbackFileMid, 'Background', 'white', 'String', 'controlFile.m', 'FontSize', mlep.fontSmall, 'Enable', 'inactive' );
                                     mlep.controlFeedbackFileBot = uiextras.HButtonBox( 'Parent', mlep.controlFeedbackFile, 'ButtonSize', [200 60] );
                                     mlep.controlEditControlFile = uicontrol( 'style', 'push', 'String', 'Edit Control File', 'Parent', mlep.controlFeedbackFileBot, 'Callback', {@mlepControlFunction,myhandle,'editControl'}, 'FontSize', mlep.fontSmall );
-                            % PANEL USER DATA
-                            mlep.controlUserDataPanel = uiextras.Panel( 'Parent', mlep.controlFeedback4Box, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'User Data', 'FontSize', mlep.fontMedium);
+%                             % PANEL USER DATA 
+%                             mlep.controlUserDataPanel = uiextras.Panel( 'Parent', mlep.controlFeedback4Box, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'User Data', 'FontSize', mlep.fontMedium);
                                 % VBUTTONBOX USER DATA
-                                mlep.controlFeedbackDataButton = uiextras.VButtonBox( 'Parent', mlep.controlUserDataPanel, 'ButtonSize', [200 60], 'Padding',20 ); %
+                                mlep.controlFeedbackDataButton = uiextras.VButtonBox( 'Parent', mlep.controlFeedback4Box, 'ButtonSize', [200 60], 'Padding',20 ); %
                                     uicontrol( 'style', 'text', 'Parent', mlep.controlFeedbackDataButton, 'String', {'User Data'}, 'FontSize', mlep.fontMedium, 'HorizontalAlignment', 'center');
                                     mlep.controlUpdateWorkspace = uicontrol( 'style', 'push', 'Parent', mlep.controlFeedbackDataButton, 'String', 'Update Worspace', 'Callback', {@mlepControlFunction,myhandle,'updateWorkspace'}, 'FontSize', mlep.fontSmall );
                                     mlep.controlPopupUserdata = uicontrol( 'style', 'popupmenu', 'Parent', mlep.controlFeedbackDataButton, 'String', 'Select User Data', 'Callback', {@mlepControlFunction,myhandle,'selectUserdata'}, 'Enable','off', 'FontSize', mlep.fontSmall);

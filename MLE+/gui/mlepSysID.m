@@ -45,7 +45,7 @@ mlep.sysIDPanel = uiextras.Panel( 'Parent', mlep.sysIDTab, 'BorderType', 'none',
                                 uicontrol( 'style', 'push', 'String', 'SYS ID','Parent', mlep.sysIDFeedback1BoxVBox, 'Callback', {@mlepSysIDFunction,myhandle,'sysID'} );
                             set(mlep.sysIDFeedback1BoxVBox,'Sizes',[-0.6 -5 -1]);    
                             mlep.sysID1HBox = uiextras.HBox( 'Parent', mlep.sysIDFeedback1Box, 'Padding', 5, 'Spacing', 5 );
-                                mlep.sysIDParmeterPanel = uiextras.Panel( 'Parent', mlep.sysID1HBox, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'Parameters', 'FontSize', mlep.fontMedium  );
+                                mlep.sysIDParmeterPanel = uiextras.Panel( 'Parent', mlep.sysID1HBox, 'BorderType', 'etchedin', 'BorderWidth', 1, 'Title', 'Parameters IDINPUT', 'FontSize', mlep.fontMedium  );
                                 mlep.sysID1HBoxVBox = uiextras.VBox( 'Parent', mlep.sysIDParmeterPanel, 'Padding', 5, 'Spacing', 5 );
                                     mlep.sysIDConrolStep = uiextras.HButtonBox( 'Parent', mlep.sysID1HBoxVBox, 'Padding', 5, 'Spacing', 5, 'ButtonSize', [200 50] );
                                         uicontrol( 'style', 'text', 'Parent', mlep.sysIDConrolStep, 'String', {'Control Step'}, 'FontSize', mlep.fontSmall );
