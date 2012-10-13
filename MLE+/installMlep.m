@@ -11,6 +11,9 @@ EplusFolder = 'EnergyPlus-7-1-0';
 JavaFolder = 'Java';
 BcvtbFolder = 'bcvtb';
 
+%% VERSION PATH
+addpath([pwd filesep 'gui' filesep 'version']);
+
 %% MLEP CORE/GUI PATH
 addpath([pwd filesep 'core' filesep]);
 addpath([pwd filesep 'gui' filesep]);

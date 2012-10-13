@@ -85,8 +85,13 @@ mlep = mlepBacnet(myhandle);
 
 %% TABS SWITCHING 
 % Tabs switching function
-set(mlep.guiTab,'SelectionChangeCallback', @(obj,evt) selectionChangeCbk(obj,evt)); % Formerly SelectionChangeFcn
-set(mlep.guiTab,'SelectedTab',mlep.presentationTab);          % Replaces SelectedIndex property
+MatlabVersion = getversion;
+if MatlabVersion == 7.10
+    set(mlep.guiTab,'SelectionChangeFcn', @(obj,evt) selectionChangeCbk(obj,evt)); % Formerly SelectionChangeFcn
+else
+    set(mlep.guiTab,'SelectionChangeCallback', @(obj,evt) selectionChangeCbk(obj,evt)); % Formerly SelectionChangeFcn
+end
+    %set(mlep.guiTab,'SelectedTab',mlep.presentationTab);          % Replaces SelectedIndex property
 
 % Get the underlying Java reference (use hidden property)
 jTabGroup = getappdata(handle(mlep.guiTab),'JTabbedPane');
@@ -113,7 +118,12 @@ jTabGroup.setTitleAt(4,'<html><font face="helvetica", color="black",size=5>5. BA
 % Note: icon is automatically grayed when label is disabled
 %jLabel.setEnabled(false);
 %jTabGroup.setEnabledAt(1,false);  % disable only tab #1
-set(mlep.guiTab,'SelectedTab',mlep.presentationTab);          % Replaces SelectedIndex property
+
+if MatlabVersion == 7.10
+    set(mlep.guiTab,'SelectedTab',1);          % Replaces SelectedIndex property
+else
+    set(mlep.guiTab,'SelectedTab',mlep.presentationTab);          % Replaces SelectedIndex property
+end
  
 data = [];
 guidata(myhandle, mlep);
@@ -122,10 +132,10 @@ end
 function selectionChangeCbk(src,evt) 
 % This new code uses tab handles to directly access tab properites
 
-oldTab = evt.OldValue;                % Event member is tab handle
-oldName = get(oldTab,'title');        % Access child tab directly
-newTab = evt.NewValue;                % Event member is tab handle
-newName = get(newTab,'title');        % Access child tab directly
+%oldTab = evt.OldValue;                % Event member is tab handle
+%oldName = get(oldTab,'title');        % Access child tab directly
+%newTab = evt.NewValue;                % Event member is tab handle
+%newName = get(newTab,'title');        % Access child tab directly
 %disp(['It was ' oldName ' time; now it is ' newName ' time.'])
 
 % Switch between tabs
