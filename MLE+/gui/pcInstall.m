@@ -1,5 +1,19 @@
 function [install, myhandle] = pcInstall(mlepFolder)
-myhandle = figure('Units','pixels','OuterPosition',[200 200 900 700], 'HandleVisibility', 'callback', 'name', 'MLE+ Installation', 'NumberTitle', 'off', 'DockControls', 'off', 'ToolBar', 'none'); % [0.05 0.05 0.9 0.9]
+
+% GET SCREEN SIZES
+temp.screenSize = get(0,'screensize');
+temp.guiLength = 800;
+temp.guiHeight = 700;
+temp.guiRatio = temp.guiLength/temp.guiHeight;
+
+% DETERMINE FIGURE POSITION
+temp.mainPosition(1) = ceil((temp.screenSize(3)-temp.guiLength)/2);
+temp.mainPosition(2) = ceil((temp.screenSize(4)-temp.guiHeight)/2);
+temp.mainPosition(3) = temp.guiLength;
+temp.mainPosition(4) = temp.guiHeight;
+
+
+myhandle = figure('Units','pixels','OuterPosition',temp.mainPosition, 'HandleVisibility', 'callback', 'name', 'MLE+ Installation', 'NumberTitle', 'off', 'DockControls', 'off', 'ToolBar', 'none'); % [0.05 0.05 0.9 0.9]
 set(myhandle, 'Resize','off');
 install.handle = myhandle;
 install.fontMedium = 12;
