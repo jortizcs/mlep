@@ -86,7 +86,7 @@ mlep = mlepBacnet(myhandle);
 %% TABS SWITCHING 
 % Tabs switching function
 MatlabVersion = getversion;
-if MatlabVersion == 7.10
+if MatlabVersion == 8
     set(mlep.guiTab,'SelectionChangeFcn', @(obj,evt) selectionChangeCbk(obj,evt)); % Formerly SelectionChangeFcn
 else
     set(mlep.guiTab,'SelectionChangeCallback', @(obj,evt) selectionChangeCbk(obj,evt)); % Formerly SelectionChangeFcn
