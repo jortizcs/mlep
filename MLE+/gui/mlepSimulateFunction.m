@@ -76,8 +76,13 @@ if exist(pathOutput,'file')
     for i = 1:size( mlep.data.outputFieldNames,1)
         mlep.data.simulateListboxText{i+last} = mlep.data.outputFieldNames{i};
         mlep.data.varsData(:,i+last) = mlep.data.mlepOut.(mlep.data.outputFieldNames{i})(1:size(mlep.data.varsData,1))';
-    end  
+    end
+    if size(mlep.data.simulateListboxText,2)
+        set(mlep.simulateListbox,'value',1);
+    end
     set(mlep.simulateListbox,'string',mlep.data.simulateListboxText);
+ 
+    
 else
     disp(['Project Folder' mlep.data.projectPath])
     mlep.data.mlepError = 'noOutputFileFound';

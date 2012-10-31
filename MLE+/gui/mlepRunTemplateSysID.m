@@ -36,7 +36,7 @@ indexIdf = strfind(mlep.data.idfFile, '.idf');
 indexEpw = strfind(mlep.data.weatherFile, '.epw');
 ep.arguments = {mlep.data.idfFile(1:indexIdf(1)-1), mlep.data.weatherFile(1:indexEpw(1)-1)};
 %ep.arguments = {'/Users/willyg/Documents/MATLAB/MLE+/Example/SmOffPSZ', 'USA_IL_Chicago-OHare.Intl.AP.725300_TMY3'};
-ep.acceptTimeout = 2000; %800000
+ep.acceptTimeout = 8000; %800000
 VERNUMBER = 2;  % version number of communication protocol (2 for E+ 6.0.0)
 
 
@@ -119,7 +119,7 @@ while kStep <= MAXSTEPS
     % Parse it to obtain building outputs
     [flag, eptime, outputs] = mlepDecodePacket(packet);
     if flag ~= 0
-        flag
+        %flag
         break;
     end
     
