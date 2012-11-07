@@ -96,7 +96,7 @@ end
 function [mlep] = getReadObjectIndex(mlep)
 % Callback for getReadObjectIndex
 mlep.readBACnetObject;
-mlep.readBACnetObjectValue = [0 1 3 4];
+mlep.readBACnetObjectValue = [2 1 3 4];
 index = get(mlep.readBACnetObjectSelect,'Value');
 mlep.data.readBACnetObjectSelected = mlep.readBACnetObjectValue(index);
 end
@@ -111,8 +111,7 @@ end
 
 function [mlep] = functionReadProperty(mlep)
 % Callback for getReadPropertyIndex
-[mlep.data.BACnetStatus,mlep.data.BACnetResults] = dos([mlep.BACnetDir 'bvlc 158.130.13.52 >NUL & '...
-    mlep.BACnetDir 'bacrp ' num2str(mlep.data.readBacnetDeviceID) ' ' num2str(mlep.data.readBACnetObjectSelected)...
+[mlep.data.BACnetStatus,mlep.data.BACnetResults] = dos([mlep.BACnetDir 'bacrp ' num2str(mlep.data.readBacnetDeviceID) ' ' num2str(mlep.data.readBACnetObjectSelected)...
     ' 1 ' num2str(mlep.data.readBACnetPropertySelected)]);
 if ~mlep.data.BACnetStatus
     set(mlep.bacnetReadResult,'String',mlep.data.BACnetResults);
@@ -144,7 +143,7 @@ end
 function [mlep] = getWriteObjectIndex(mlep)
 % Callback for getWriteObjectIndex
 mlep.writeBACnetObject;
-mlep.writeBACnetObjectValue = [0 1 3 4];
+mlep.writeBACnetObjectValue = [2 1 3 4];
 index = get(mlep.writeBACnetObjectSelect,'Value');
 mlep.data.writeBACnetObjectSelected = mlep.writeBACnetObjectValue(index);
 end
@@ -183,7 +182,7 @@ end
 
 function [mlep] = functionWriteProperty(mlep)
 % Callback for getReadPropertyIndex
-[mlep.data.BACnetStatus,mlep.data.BACnetResults] = dos([mlep.BACnetDir 'bvlc 158.130.13.52 >NUL & ' mlep.BACnetDir 'bacwp '...
+[mlep.data.BACnetStatus,mlep.data.BACnetResults] = dos([mlep.BACnetDir 'bacwp '...
     num2str(mlep.data.writeBacnetDeviceID) ' ' num2str(mlep.data.writeBACnetObjectSelected) ' 1 ' num2str(mlep.data.writeBACnetPropertySelected) ' 16 -1 '...
     num2str(mlep.data.writeBACnetTagSelected) ' ' num2str(mlep.data.writeBacnetValue)]);
 

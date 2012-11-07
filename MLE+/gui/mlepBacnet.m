@@ -47,7 +47,7 @@ mlep.bacnetPanel = uiextras.Panel( 'Parent', mlep.bacnetTab, 'BorderType', 'none
                             mlep.bacnetReadBox2 = uiextras.HBox( 'Parent', mlep.bacnetReadBox, 'Padding', 0, 'Spacing', 15  );
                                 uicontrol( 'style', 'text', 'String', 'Select Object ', 'Parent', mlep.bacnetReadBox2, 'FontSize', mlep.fontMedium );
                                 % READ BACNET OBJECTS 
-                                mlep.readBACnetObject = {'Analog Input';'Analog Output';'Binary Input';'Binary Output'};
+                                mlep.readBACnetObject = {'Analog Value';'Analog Output';'Binary Input';'Binary Output'};
                                 mlep.readBACnetObjectSelect = uicontrol( 'style', 'popupmenu', 'String', mlep.readBACnetObject, 'Parent', mlep.bacnetReadBox2, 'Callback', {@mlepBacnetFunction,myhandle,'getReadObjectIndex'}, 'Background', 'white');
                             mlep.bacnetReadBox3 = uiextras.HBox( 'Parent', mlep.bacnetReadBox, 'Padding', 0, 'Spacing', 15  );
                                 uicontrol( 'style', 'text', 'String', 'Select Property', 'Parent', mlep.bacnetReadBox3, 'FontSize', mlep.fontMedium );
@@ -75,7 +75,7 @@ mlep.bacnetPanel = uiextras.Panel( 'Parent', mlep.bacnetTab, 'BorderType', 'none
                                 mlep.bacnetWriteBox2 = uiextras.HBox( 'Parent', mlep.bacnetWriteBox, 'Padding', 0, 'Spacing', 15  );
                                     uicontrol( 'style', 'text', 'String', 'Select Object', 'Parent', mlep.bacnetWriteBox2, 'FontSize', mlep.fontMedium );
                                     % WRITE BACNET OBJECTS 
-                                    mlep.writeBACnetObject = {'Analog Input';'Analog Output';'Binary Input';'Binary Output'};
+                                    mlep.writeBACnetObject = {'Analog Value';'Analog Output';'Binary Input';'Binary Output'};
                                     mlep.writeBACnetObjectSelect = uicontrol( 'style', 'popupmenu', 'String', mlep.writeBACnetObject, 'Parent', mlep.bacnetWriteBox2, 'Callback', {@mlepBacnetFunction,myhandle,'getWriteObjectIndex'}, 'Background', 'white');
                                 mlep.bacnetWriteBox3 = uiextras.HBox( 'Parent', mlep.bacnetWriteBox, 'Padding', 0, 'Spacing', 15  );
                                     uicontrol( 'style', 'text', 'String', 'Select Property', 'Parent', mlep.bacnetWriteBox3, 'FontSize', mlep.fontMedium );
