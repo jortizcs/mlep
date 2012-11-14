@@ -98,8 +98,17 @@ end
 %% EPLUS DIR UNIX
 function [install] = getEplusPathUnix(install)
 
-[eplusPath] = get(install.eplusEdit,'String');
+if ispc
+    startPath = 'C:\';
+else
+    startPath = ['Applications' filesep];
+end
+
+[eplusPath] = uigetdir(startPath,'Select EnergyPlus Directory. (e.g. /Applications/EnergyPlusV7-1-0)');
 if ischar(eplusPath)
+    install.data.eplusPath = eplusPath;
+    set(install.eplusEdit, 'String', install.data.eplusPath, 'Background', 'g');
+    eplusPath = install.data.eplusPath;
     % Check Path
     install.data.eplusPathCheck = 1;
     
@@ -115,11 +124,17 @@ end
 %% EPLUS DIR UNIX
 function [install] = getJavaPathUnix(install)
 
-[javaPath] = get(install.javaEdit,'String');
+if ispc
+    startPath = 'C:\';
+else
+    startPath = ['Applications' filesep];
+end
+
+[javaPath] = uigetdir(startPath,'Select Java/Bin Directory. (e.g. /usr/bin/bin)');
 if ischar(javaPath)
-    % Check Path
-    install.data.javaPathCheck = 1;
-    
+    install.data.javaPath = javaPath;
+    set(install.javaEdit, 'String', install.data.javaPath, 'Background', 'g');
+    javaPath = install.data.javaPath;
     currPath = mfilename('fullpath');
     % Remove
     indexHome = strfind(currPath, 'installFunction');

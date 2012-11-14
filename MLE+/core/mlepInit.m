@@ -18,9 +18,11 @@ homePath = homePath(1:indexHome-1);
 bcvtbDir = [homePath '..' filesep 'bcvtb'];
 
 load([homePath '..' filesep 'gui' filesep 'eplusPath.mat']);
-load([homePath '..' filesep 'gui' filesep 'javaPath.mat']);
 EplusDir = eplusPath;
-JavaDir = javaPath;
+if ispc
+    load([homePath '..' filesep 'gui' filesep 'javaPath.mat']);
+    JavaDir = javaPath;
+end
 
 if ispc
     % Windows
@@ -39,14 +41,14 @@ else
     MLEPSETTINGS = struct(...
         'version', 2,...   % Version of the protocol
         'program', 'runenergyplus',...   % Path to the program to run EnergyPlus
-        'bcvtbDir', '/Applications/bcvtb',...   % Path to BCVTB installation bcvtbDir
+        'bcvtbDir', bcvtbDir,...   % Path to BCVTB installation bcvtbDir
         'execcmd', 'java'...   % Use Java to execute E+
         );
     
     MLEPSETTINGS.env = {};
     MLEPSETTINGS.path = {    ...
         {'ENERGYPLUS_DIR', EplusDir},...  % Path to the EnergyPlus
-        {'PATH', [JavaDir ';' EplusDir]}...  % System path, should include E+ and JRE
+        {'PATH', ['usr/bin/java' ';' EplusDir]}...  % System path, should include E+ and JRE
         };
     % JavaDir = '/usr/bin/java'
     

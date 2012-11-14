@@ -3173,7 +3173,7 @@
 
   Output:Variable,*,Zone Air Humidity Ratio,Hourly;
 
-  Output:Variable,*,Coil System Part Load Ratio,Hourly;
+  Output:Variable,*,DXSystem Part-Load Ratio,Hourly;
 
   Output:Variable,*,DX Coil Total Cooling Rate,Hourly;
 
