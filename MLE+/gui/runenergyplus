@@ -43,14 +43,14 @@ function set_ep_dir () {
 	ENERGYPLUS_DIR=`dirname "$S_DIR"`
 }
 
-# Set The ENERGYPLUS_DIR 
+# Set the ENERGYPLUS_DIR 
 set_ep_dir
 
-echo
-echo "1: " $1
-echo "Large suffix: " ${1%%/*} " Small suffix: " ${1%/*}
-echo "Large prefix: " ${1##*/} " Small prefix: " ${1#*/}
-echo "Willy"
+#echo
+#echo "1: " $1
+#echo "Large suffix: " ${1%%/*} " Small suffix: " ${1%/*}
+#echo "Large prefix: " ${1##*/} " Small prefix: " ${1#*/}
+#echo
 
 # Sets the input directory
 if [ "${1%/*}" != "${1##*/}" ] && [ "$1" ]; then
@@ -64,15 +64,12 @@ else
 	INP_P=`pwd`
 fi
 
-echo "INP_P" $INP_P
 # ==========================================================
 # Set Output path and create an "output" subdirectory if necessary
-OUT_P="${INP_P}/Outputs"
+OUT_P="${INP_P}/Output"
 if [ ! -e "${OUT_P}" ]; then
 	mkdir "${OUT_P}"
 fi
-
-echo "Output Directory" $OUT_P
 
 # Allows references that are relative to the IDF files location to be found
 cd "${INP_P}"
@@ -155,7 +152,7 @@ function ShowWeatherFiles()
 # ==========================================================
 function ExitWithError()
 {
-    echo "===== EnergyPlus terminated with error =====" >> /Users/willyg/Documents/MATLAB/exitwitherror.txt
+    echo "===== EnergyPlus terminated with error ====="
     exit 1
 }
 # ==========================================================
@@ -191,7 +188,6 @@ fi
 # ==========================================================
 # Delete all output files
 #  1. Clean up working directory
-echo "Delete Ouput Files" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
 rm -f  eplusout.end
 rm -f  eplusout.eso
 rm -f  eplusout.rdd
@@ -254,7 +250,6 @@ rm -f  sqlite.err
 
 
 #  Delete output files in output path
-echo "Delete Ouput Files in Output Dir" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
 rm -f "${OUT_P}/${ARG1}.eso"
 rm -f "${OUT_P}/${ARG1}.rdd"
 rm -f "${OUT_P}/${ARG1}.edd"
@@ -313,11 +308,16 @@ rm -f "${OUT_P}/${ARG1}.sql"
 rm -f "${OUT_P}/${ARG1}SQLite.err"
 
 
+OSFMU=`uname`
+# delete FMU generated output files -- FMI
+if [ "$OSFMU" != "Darwin" ]; then
+    rm -f "${OUT_P}/${ARG1}.mat"
+fi
+
 
 # ==========================================================
 # Prepare simulation input files/links
 # Check for imf/idf and epw file
-echo "Prepare sim input files" ${OUT_P}
 if [ -f "${INP_P}/${ARG1}.imf" ]; then
   #  process with epmacro, then link
   ln -s "${INP_P}/${ARG1}.imf" in.imf
@@ -345,7 +345,7 @@ elif [ -f "${INP_P}/${ARG1}.idf" ]; then
   ln -s "${INP_P}/${ARG1}.idf" in.idf
   echo
   echo "$HEADER"
-  echo "   Input file  : ${ARG1}.idf" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
+  echo "   Input file  : ${ARG1}.idf"
 else
   echo
   echo "$HEADER"
@@ -357,7 +357,7 @@ else
 fi
 
 # ==========================================================
-echo "Set Weather File"
+
 # Set weather file
 if [ "" != "$ARG2" ]; then
     echo "   Weather file: $ARG2.epw"
@@ -438,10 +438,8 @@ ln -s "$ENERGYPLUS_DIR/bin/Energy+.idd"
 
 # ==========================================================
 # Start energyplus
-echo "START ENERGYPLUS"
-echo "WILLY start energyPlus" $PRG_N>> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
 "$ENERGYPLUS_DIR/bin/$PRG_N"
-echo "start energyPlus after" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
+
 #====================================================================
 # Check for error
 #
@@ -464,9 +462,6 @@ fi
 # ==========================================================
 # Do PostProcessing Steps
 #  6&8. Copy Post Processing Program command file(s) to working directory
-echo
-echo "PostProccessing Steps" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
-echo
 
 if [ -f "${INP_P}/${ARG1}.rvi" ]; then
   #  link to the rvi
@@ -499,12 +494,6 @@ fi
 
 # ==========================================================
 # Move output files (except inp, since it is only a symlink)
-
-# Write output location exit message                                                                                                                                                 
-echo
-echo "EnergyPlus output files are located in: \""${OUT_P}"\"" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
-echo
-
 if [ -f eplusout.eso ]; then
 	mv eplusout.eso "${OUT_P}/${ARG1}.eso"
 fi
@@ -650,6 +639,13 @@ if [ -f audit.out ]; then
 	mv audit.out "${OUT_P}/${ARG1}.audit.out"
 fi
 
+# move FMU generated output files to output folder -- FMI
+if [ "$OSFMU" != "Darwin" ]; then
+  if [ -f *.mat ]; then 
+  	mv *.mat "${OUT_P}/${ARG1}.mat" 
+  fi 
+fi
+
 
 # Delete additional files
 for filename in $LINK_NAMES Energy+.ini eplusout.end;
@@ -659,9 +655,24 @@ do
     fi
 done
 
+# Delete FMUs files and folder -- FMI
+if [ "$OSFMU" != "Darwin" ]; then
+  if [ -f *.mat ]; then
+	rm *.mat
+  fi
+
+  if [ -f *.fmu ]; then
+	rm *.fmu
+  fi
+
+  if [ -d tmp-fmus ]; then
+	rm -rf tmp-fmus
+  fi
+fi
+
 # Write output location exit message
 echo
-echo "Willy EnergyPlus output files are located in: \""${OUT_P}"\"" >> /Users/willyg/Documents/MATLAB/energyPlusStatus.txt
+echo "EnergyPlus output files are located in: \""${OUT_P}"\""
 echo
 
 #====================================================================
