@@ -1,7 +1,7 @@
 function [mlep] = mlepVariable(myhandle)
 % Retrieve data
 mlep = guidata(myhandle);
-mlep.variableHandle = figure('Units','pixels','OuterPosition',mlep.variablePosition, 'CloseRequestFcn', {@mlepVariableFunction,myhandle,'closeVariableTab'}, 'Visible', 'off', 'HandleVisibility', 'callback'); % ,'WindowStyle','modal' ,'CloseRequestFcn',{@mlepVariableFunction,myhandle,'closeFunction'}
+mlep.variableHandle = figure('Units','pixels','OuterPosition',mlep.variablePosition, 'CloseRequestFcn', {@mlepVariableFunction,myhandle,'closeVariableTab'}, 'Visible', 'off', 'HandleVisibility', 'callback', 'Name', 'Variable Configuration', 'NumberTitle', 'off'); % ,'WindowStyle','modal' ,'CloseRequestFcn',{@mlepVariableFunction,myhandle,'closeFunction'}
 
 %set(mlep.guiTab,'SelectedTab',mlep.variableTab);
 mlep.variablePanel = uiextras.Panel( 'Parent', mlep.variableHandle, 'BorderType', 'none' );

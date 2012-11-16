@@ -39,7 +39,7 @@ mlep.data.projectPath = pwd;
 data = [];
 
 %% CREATE FIGURE
-myhandle = figure('Units','pixels','OuterPosition',mlep.mainPosition, 'HandleVisibility', 'callback'); % [0.05 0.05 0.9 0.9]
+myhandle = figure('Units','pixels','OuterPosition',mlep.mainPosition, 'HandleVisibility', 'callback', 'Name', 'MLE+ Front-End', 'NumberTitle', 'off'); % [0.05 0.05 0.9 0.9]
 mlep.handle = myhandle;
 set(myhandle, 'CloseRequestFcn', {@mlepPresentationFunction,myhandle,'exit'});
 
@@ -126,6 +126,8 @@ else
 end
  
 data = [];
+
+figResize(1,0,myhandle);
 guidata(myhandle, mlep);
 end
 

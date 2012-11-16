@@ -109,7 +109,7 @@
 ! Environmental Emissions:        None
 ! Utility Tariffs:                None
 
-  Version,7.1;
+  Version,7.2;
 
   Timestep,60;
 
@@ -2446,9 +2446,9 @@
   ! Output:Variable,Zn003:Flr001,Surface Outside Temperature,timestep;
 
   Output:Variable,WEST ZONE,Zone Mean Air Temperature,timestep;
-  
+
   Output:Variable,EAST ZONE,Zone Mean Air Temperature,timestep;
-  
+
   Output:Variable,NORTH ZONE,Zone Mean Air Temperature,timestep;
 
   Output:Variable,*,Zone Mean Radiant Temperature,timestep;
@@ -2489,7 +2489,9 @@
   ! Output:Variable,*,District Heating Rate,timestep;
 
   Output:Variable,Zone 1 Radiant Floor,Electric Low Temp Radiant Electric Power,timestep;
+
   Output:Variable,Zone 2 Radiant Floor,Electric Low Temp Radiant Electric Power,timestep;
+
   Output:Variable,Zone 3 Radiant Floor,Electric Low Temp Radiant Electric Power,timestep;
 
   ! Output:Variable,*,Electric Low Temp Radiant Electric Consumption,timestep;

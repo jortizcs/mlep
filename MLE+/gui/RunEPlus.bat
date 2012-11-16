@@ -33,12 +33,12 @@
  set program_path=%~dp0
  set program_name=EnergyPlus.exe
  set input_path=ExampleFiles\
- set output_path=ExampleFiles\Outputs\
+ set output_path=ExampleFiles\Output\
  : If called with full path to an existing file, clear these variables since
  : the first parameter is enough to locate the file 
+ : MLE+ MODIFIED 1
  IF EXIST "%~1.idf" set input_path=
-:MLE+ MODIFIED 1
- IF EXIST "%~1.idf" set output_path=Outputs\
+ IF EXIST "%~1.idf" set output_path=Output\
  IF EXIST "%~1.imf" set input_path=
  IF EXIST "%~1.imf" set output_path=
 
@@ -355,11 +355,11 @@ IF EXIST eplusout.bnd %post_proc%HVAC-Diagram.exe
  IF EXIST eplusout.sql MOVE eplusout.sql "%output_path%%~1.sql"
  IF EXIST eplusout.edd MOVE eplusout.edd "%output_path%%~1.edd"
  IF EXIST eplusout.dfs MOVE eplusout.dfs "%output_path%%~1DFS.csv"
- if exist *.mat (
-   : MLE+ MODIFIED
-   set matp=%~n1
-   for /f %%x IN ('dir /b *.end') DO call :s_sub %%x
- )
+ : MLE+ MODIFICATION 2
+ : if exist *.mat (
+ :  set matp=%~n1
+ :  for /f %%x IN ('dir /b *.mat') DO call :s_sub %%x
+ : )
  goto :cleanup
 
 :cleanup
@@ -378,8 +378,8 @@ IF EXIST eplusout.bnd %post_proc%HVAC-Diagram.exe
  IF EXIST sqlite.err  DEL sqlite.err
  IF EXIST utilSocket.log   MOVE utilSocket.log testsocket.log
  : Delete FMUs files and folder -- added for FMI
-:MLE+ MODIFIED 2
-:IF EXIST *.mat DEL *.mat 
+ : MLE+ MODIFIED 2
+ : IF EXIST *.mat DEL *.mat 
  IF EXIST *.fmu DEL *.fmu 
  IF EXIST tmp-fmus rmdir tmp-fmus /Q/S
 
