@@ -42,7 +42,7 @@ end
 
 %% Check Whether csv got written
 filePath = regexprep(mlep.data.idfFile, 'idf', 'csv');
-pathOutput = [mlep.data.projectPath 'Outputs' filesep filePath];
+pathOutput = [mlep.data.projectPath 'Output' filesep filePath];
 
 % Small Pause to let files get written 
 for count = 1:10

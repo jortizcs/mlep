@@ -29,7 +29,7 @@ ep = mlepProcess;
 ep.arguments = {'SmOffPSZ', 'USA_IL_Chicago-OHare.Intl.AP.725300_TMY3'};
 ep.acceptTimeout = 6000;
 
-VERNUMBER = 2;  % version number of communication protocol (2 for E+ 6.0.0)
+VERNUMBER = 2;  % version number of communication protocol (2 for E+ 7.2.0)
 
 %% Start EnergyPlus cosimulation
 [status, msg] = ep.start;  
