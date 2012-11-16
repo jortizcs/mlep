@@ -5,6 +5,10 @@ function [mlep] = mlepScreenSize(mlep)
 mlep.screenSize = get(0,'screensize');
 mlep.guiLength = 1200;
 mlep.guiHeight = 800;
+if mlep.screenSize(3) < 1300
+    mlep.guiLength = mlep.guiLength*0.9;
+    mlep.guiHeight = mlep.guiHeight*0.9;
+end
 mlep.guiRatio = mlep.guiLength/mlep.guiHeight;
 
 % DETERMINE FIGURE POSITION

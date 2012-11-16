@@ -8,10 +8,15 @@ mlep = struct();
 
 
 % Font Size
-mlep.fontLarge = 14;
-mlep.fontMedium = 11; % 10 
-mlep.fontSmall = 8; % 8
-
+if ispc
+    mlep.fontLarge = 14;
+    mlep.fontMedium = 11; % 10 
+    mlep.fontSmall = 8; % 8
+else
+    mlep.fontLarge = 16;
+    mlep.fontMedium = 13; % 10 
+    mlep.fontSmall = 10; % 8    
+end
 %% INITIALIZE NECESSARY VARIABLES
 mlepInit;
 mlep.data.MLEPSETTINGS = MLEPSETTINGS;
