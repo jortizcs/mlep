@@ -100,7 +100,7 @@ set(mlep.dxfAxes, 'HandleVisibility', 'callback');
 
 % CHECK DIRECTORIES FOR DXF FILE
 filePath = regexprep(mlep.data.idfFile, 'idf', 'dxf');
-pathOutput = [mlep.data.projectPath 'Outputs' filesep filePath];
+pathOutput = [mlep.data.projectPath 'Output' filesep filePath];
 
 % PLOT DXF IF EXIST
 if exist(pathOutput,'file')

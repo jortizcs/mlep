@@ -232,13 +232,6 @@ if processobj.isRunning
     
     VERNUMBER = 2;
     
-    % Send signals to E+
-    rvalues = block.InputPort(1).Data;
-%     ivalues = block.InputPort(2).Data;
-%     bvalues = block.InputPort(3).Data;
-    
-    processobj.write(mlepEncodeRealData(VERNUMBER, 0, block.CurrentTime, rvalues));
-
     % Read from E+
     readpacket = processobj.read;
     
@@ -247,19 +240,27 @@ if processobj.isRunning
     end
     
     % Currently, ivalues and bvalues are not used
-    [flag, timevalue, rvalues] = mlepDecodePacket(readpacket);
+    [flag, timevalue, irvalues] = mlepDecodePacket(readpacket);
+    
+    % Send signals to E+
+    rvalues = block.InputPort(1).Data;
+%     ivalues = block.InputPort(2).Data;
+%     bvalues = block.InputPort(3).Data;
+    
+    processobj.write(mlepEncodeRealData(VERNUMBER, 0, block.CurrentTime, rvalues));
+    
     if flag ~= 0
         processobj.stop(false);
         block.OutputPort(1).Data = flag;
     else
-        if isempty(rvalues), rvalues = 0; end
+        if isempty(irvalues), irvalues = 0; end
 %         if isempty(ivalues), ivalues = 0; end
 %         if isempty(bvalues), bvalues = 0; end
 
         % Set outputs of block
         block.OutputPort(1).Data = flag;
         block.OutputPort(2).Data = timevalue;
-        block.OutputPort(3).Data = rvalues(:);
+        block.OutputPort(3).Data = irvalues(:);
 %         block.OutputPort(4).Data = ivalues(:);
 %         block.OutputPort(5).Data = bvalues(:);
     end

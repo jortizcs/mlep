@@ -64,7 +64,7 @@ mlep.sysIDPanel = uiextras.Panel( 'Parent', mlep.sysIDTab, 'BorderType', 'none',
                                         uicontrol( 'style', 'text', 'Parent', mlep.sysIDlevels, 'String', {'Level ='}, 'FontSize', mlep.fontSmall  );
                                         uicontrol( 'style', 'text', 'Parent', mlep.sysIDlevels, 'String', {'minu'}, 'FontSize', mlep.fontSmall  );
                                         mlep.sysIDeditMinu = uicontrol( 'style', 'edit', 'Parent', mlep.sysIDlevels, 'Callback', {@mlepSysIDFunction,myhandle,'getMinu'}, 'Background', mlep.colorWhite );
-                                        uicontrol( 'style', 'text', 'Parent', mlep.sysIDlevels, 'String', {'minu'}, 'FontSize', mlep.fontSmall  );
+                                        uicontrol( 'style', 'text', 'Parent', mlep.sysIDlevels, 'String', {'manu'}, 'FontSize', mlep.fontSmall  );
                                         mlep.sysIDeditManu = uicontrol( 'style', 'edit', 'Parent', mlep.sysIDlevels, 'Callback', {@mlepSysIDFunction,myhandle,'getManu'}, 'Background', mlep.colorWhite );
                                     uicontrol( 'style', 'push', 'Parent', mlep.sysID1HBox, 'Callback', {@mlepSysIDFunction,myhandle,'getInputIndexPID'} );
 

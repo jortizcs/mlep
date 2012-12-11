@@ -181,7 +181,7 @@ end
 
 % Set New Figure Size
 % set(myhandle,'OuterPosition',mlep.defaultSizePixels)
-set(myhandle,'OuterPosition',mlep.mainPosition)
+%set(myhandle,'OuterPosition',mlep.mainPosition)
 
 end
 
